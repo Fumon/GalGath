@@ -52,47 +52,48 @@ pub(crate) async fn serve_manifest() -> impl IntoResponse {
     "short_name": "GalGath",
     "description": "A minimal PWA that can receive shared content.",
     "start_url": "/pwa",
+    "scope": "/pwa",
     "display": "standalone",
     "background_color": "#000000",
     "theme_color": "#ffffff",
     "icons": [
         {
-            "src": "/icon/48.png",
+            "src": "/icon/48",
             "sizes": "48x48",
             "type": "image/png"
         },
         {
-            "src": "/icon/72.png",
+            "src": "/icon/72",
             "sizes": "72x72",
             "type": "image/png"
         },
         {
-            "src": "/icon/96.png",
+            "src": "/icon/96",
             "sizes": "96x96",
             "type": "image/png"
         },
         {
-            "src": "/icon/144.png",
+            "src": "/icon/144",
             "sizes": "144x144",
             "type": "image/png"
         },
         {
-            "src": "/icon/192.png",
+            "src": "/icon/192",
             "sizes": "192x192",
             "type": "image/png"
         }
     ],
     "share_target": {
-        "action": "https://er.prig.gay/share",
-        "method": "POST"
+        "action": "/pwa/share",
+        "method": "POST",
+        "enctype": "multipart/form-data",
         "params": {
             "title": "name",
             "text": "description",
-            "enctype": "multipart/form-data",
             "url": "link",
             "files": [{
                 "name": "s",
-                "accept": ["text/*", "image/*", "video/*, application/*"]
+                "accept": ["text/*", "image/*", "video/*"]
             }]
         }
     }

@@ -16,7 +16,7 @@ async fn main() {
         .route("/manifest.json", get(pwa_serving::serve_manifest))
         .route("/icon/:size", get(pwa_serving::serve_icon))
         .route("/favicon.ico", get(pwa_serving::serve_favicon))
-        .route("/share", post(recieve_share));
+        .route("/pwa/share", post(recieve_share));
 
     println!("Running server on {PORT}...");
     let listener = tokio::net::TcpListener::bind(format!("0.0.0.0:{PORT}")).await.unwrap();
