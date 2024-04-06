@@ -1,8 +1,6 @@
 
 
-
 pub const USER_AGENT_STRING: &str = "linux:GalGath:v0.0.1 (by /u/fumon; personal epub converter)";
-
 
 pub fn get_reddit_link_fullname(url: impl AsRef<str>) -> String {
     let parsed = url::Url::parse(url.as_ref()).unwrap();

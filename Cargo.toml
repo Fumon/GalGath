@@ -4,8 +4,11 @@ version = "0.0.1"
 edition = "2021"
 
 [dependencies]
-crowbook = "0.16.1"
-reqwest = { version = "0.11.24", features = ["json"] }
+axum = { version = "0.7.5", features = ["multipart", ] }
+build_html = "2.4.0"
+crowbook = { version = "0.16.1", default-features = false, features = ["syntect"] }
+mime = "0.3.17"
+reqwest = { version = "0.12.3", default-features = false, features = ["json", "rustls-tls"]}
 serde_json = "1.0.114"
 tokio = { version = "1", features = ["full"] }
 url = "2.5.0"

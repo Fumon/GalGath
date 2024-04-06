@@ -14,7 +14,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     
     let resp = client
         .get(api_url)
-        .header(USER_AGENT,galgath::USER_AGENT_STRING)
+        .header(USER_AGENT, galgath::USER_AGENT_STRING)
         .send()
         .await?
         .json::<serde_json::Value>()
