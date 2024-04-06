@@ -1,10 +1,14 @@
-use axum::{extract::Path, http::StatusCode, response::{Html, IntoResponse}};
+use axum::{
+    extract::Path,
+    http::StatusCode,
+    response::{Html, IntoResponse},
+};
 
 use crate::icons;
 
 pub(crate) async fn serve_pwa() -> Html<&'static str> {
     Html(
-    r#"<!DOCTYPE html>
+        r#"<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -30,9 +34,9 @@ pub(crate) async fn serve_pwa() -> Html<&'static str> {
 
 pub(crate) async fn serve_service_worker() -> impl IntoResponse {
     (
-    StatusCode::OK,
-    [("Content-Type", "application/javascript")],
-    r#"
+        StatusCode::OK,
+        [("Content-Type", "application/javascript")],
+        r#"
 self.addEventListener('install', event => {
     console.log('Service Worker installing.');
 });
@@ -45,9 +49,9 @@ self.addEventListener('install', event => {
 
 pub(crate) async fn serve_manifest() -> impl IntoResponse {
     (
-    StatusCode::OK,
-    [("Content-Type", "application/manifest+json")],
-    r##"{
+        StatusCode::OK,
+        [("Content-Type", "application/manifest+json")],
+        r##"{
     "name": "GalGath Share Target",
     "short_name": "GalGath",
     "description": "A minimal PWA that can receive shared content.",
@@ -88,12 +92,9 @@ pub(crate) async fn serve_manifest() -> impl IntoResponse {
         "method": "POST",
         "enctype": "multipart/form-data",
         "params": {
-            "title": "name",
-            "text": "description",
-            "url": "link",
             "files": [{
-                "name": "s",
-                "accept": ["text/*", "image/*", "video/*"]
+                "name": "file",
+                "accept": ["text/*"]
             }]
         }
     }
@@ -108,7 +109,11 @@ pub(crate) async fn serve_icon(Path(size): Path<i32>) -> impl IntoResponse {
             [("Content-Type", mime::IMAGE_PNG.to_string())],
             icon,
         ),
-        None => (StatusCode::BAD_REQUEST, [("Content-Type", mime::TEXT_PLAIN.to_string())], "Invalid icon size".as_bytes()),
+        None => (
+            StatusCode::BAD_REQUEST,
+            [("Content-Type", mime::TEXT_PLAIN.to_string())],
+            "Invalid icon size".as_bytes(),
+        ),
     }
 }
 
