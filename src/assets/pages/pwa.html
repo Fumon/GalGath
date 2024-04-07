@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>GalGath PWA</title>
+    <link rel="manifest" href="manifest.json">
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(reg => console.log('Service Worker registered', reg))
+                    .catch(err => console.log('Service Worker registration failed', err));
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <h1>GalGath PWA!</h1>
+    <p>This is a minimal Progressive Web App that can be installed and used as a share target.</p>
+    <p>Version 0.0.4</p>
+</body>
+
+</html>

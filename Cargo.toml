@@ -4,7 +4,9 @@ version = "0.0.1"
 edition = "2021"
 
 [dependencies]
+anyhow = "1.0.81"
 axum = { version = "0.7.5", features = ["multipart", "ws"] }
+axum-macros = "0.4.1"
 build_html = "2.4.0"
 crowbook = { version = "0.16.1", default-features = false, features = ["syntect"] }
 mime = "0.3.17"

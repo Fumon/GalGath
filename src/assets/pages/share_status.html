@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Processing Reddit Link</title>
+</head>
+
+<body>
+    <h1>Processing Reddit Link</h1>
+    <div id="messages"></div>
+
+    <script>
+        const wsaddress = 'wss://' + window.location.host + '/pwa/sharews';
+        const socket = new WebSocket(wsaddress);
+
+        socket.addEventListener('open', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const link = urlParams.get('rlink');
+            socket.send(link);
+        });
+
+        socket.addEventListener('message', event => {
+            const message = event.data;
+            const messagesDiv = document.getElementById('messages');
+            const messageElement = document.createElement('p');
+            messageElement.textContent = message;
+            messagesDiv.appendChild(messageElement);
+        });
+    </script>
+</body>
+
+</html>
