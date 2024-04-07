@@ -40,7 +40,7 @@
         "enctype": "multipart/form-data",
         "params": {
             "files": [{
-                "name": "file",
+                "name": "fff",
                 "accept": ["text/*"]
             }]
         }
